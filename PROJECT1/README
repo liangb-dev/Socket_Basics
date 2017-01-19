@@ -1,0 +1,35 @@
+"""
+I use "sys.argv" to get the in-line arguments when running "/.client". 
+This allows the user to enter arguments after "/.client". I handled the 
+optional argument through if-statements that check if there are two 
+arguments or three arguments. If there are only two arguments then the optional
+argument was not used, and the default 'port' number is 3700, variables 
+'hostname' and 'NUID' are assigned accordingly. If there are three arguments
+these three variables will be assigned accordingly. Any additional number
+of arguments throws and error-message to console and exits the program. 
+Similarly if the types do not match the variables, then the program also
+throws an error-message to console and exits. 
+
+After the socket is created, I initialize the communication by listening to 
+a message starting with 'HELLO' with an if-statement. This could be changed
+to a while-loop if "distractions" were introduced and the HELLO-message
+isnt the first message sent. Anyway, after receiving "HELLO" I reply "IAM"
+as required.
+
+Next I parse the ensuing messages to find the 'key'. Initally, 'key' is 
+assigned a value of 1, and we begin a while-loop that terminates when 
+'key' is found and assigned a new value. Since messages may come in pieces, 
+I start a while-loop that reads and appends to 'data' until it reads a '\n'
+which symbolizes the ending of a message - a boundary. The message is split by '\n', and 
+within the ensuing string segments I look for the keywords "KEY" or "INFO". 
+The distraction message "NULL" is ignored. If "KEY" is found I assign it to
+variable 'key' and move on thus terminating the outer-while loop dependent
+on 'key == 1'. If "INFO" is detected then I send a "REPLY" message back with
+the "challenge" in order to get the next message, until the "KEY" message
+is sent. 
+"""
+
+# '!/usr/bin/env python'
+# Use the above to make a file runnable
+# May also have to give permission - 'chmod u+x'
+
