@@ -4,17 +4,17 @@ import sys
 port = 3700
 if (len(sys.argv) == 3):
     hostname = sys.argv[1]
-    NUID = int(sys.argv[2])
+    NUID = (sys.argv[2])
 elif (len(sys.argv) == 4):
     port = int(sys.argv[1])
     hostname = sys.argv[2]
-    NUID = int(sys.argv[3])
+    NUID = (sys.argv[3])
 else: 
     print "Invalid number of arguments"
     exit()
 
 
-if not isinstance(port, int) or not isinstance(NUID, int):
+if not isinstance(port, int) or not isinstance(NUID, str):
     print "Invalid arguments"
     exit()
 
